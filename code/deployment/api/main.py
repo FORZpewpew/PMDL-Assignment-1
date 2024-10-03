@@ -3,12 +3,10 @@ from fastapi.responses import StreamingResponse
 import numpy as np
 import torch
 import torchvision.transforms as transforms
+import torch.nn as nn
 import torch.nn.functional as F
 from PIL import Image
 import io
-
-# Define your model architecture (example for a simple CNN)
-import torch.nn as nn
 
 class ColorizationCNN(nn.Module):
     def __init__(self):
@@ -46,7 +44,6 @@ app = FastAPI()
 model = ColorizationCNN()
 model.load_state_dict(torch.load("colorization_cnn.pth", map_location=torch.device('cpu')))
 model.eval() 
-# Define any necessary image transformations
 transform = transforms.Compose([
     transforms.ToTensor(),
 ])
